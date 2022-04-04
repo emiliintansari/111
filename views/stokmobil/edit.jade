@@ -1,0 +1,51 @@
+extends ../layout/base 
+block content 
+	.container.mb-5
+		p.text-center.h1.fw-bold EDIT DATA
+		form(role='form',method='post' action='/menuutama/edit/#{(id==undefined) ? data.id : id}' enctype="multipart/form-data")
+			.row
+				.col-xs-6
+					.box-body
+						- if (messages.msg_error) 
+							.alert.alert-danger.alert-dismissible 
+								button.close(type='button', data-bs-dismiss='alert', aria-hidden='true') 
+									| ×
+								h4
+									i.icon.fa.fa-ban
+									|  Peringatan 
+								| !{messages.msg_error}
+						- if (messages.msg_info) 
+							.alert.alert-success.alert-dismissible 
+								button.close(type='button', data-bs-dismiss='alert', aria-hidden='true') 
+									| ×
+								h4
+									i.icon.fa.fa-ban
+									|  Berhasil 
+								| !{messages.msg_info}
+						.form-group.my-3
+							label
+								| NAMA MAKANAN
+							input(type='text',value="#{data.nama_mobil}",name='nama_mobil',placeholder='Edit Nama Mobil', autofocus).form-control
+						.form-group.my-3
+							label
+								| BERAT BERSIH
+							input(type='text',value="#{ (jumlah == undefined) ? data.jumlah_mobil : jumlah }",name='jumlah_mobil',placeholder='Edit Jumlah Mobil').form-control
+						.form-group.my-3
+							label
+								| RASA
+							input(type='text',value="#{ (tipe == undefined) ? data.tipe_mobil : tipe }",name='tipe_mobil',placeholder='Edit Tipe Mobil').form-control
+						.form-group.my-3
+							label
+								| Harga 
+							input(type='text',value="#{ (harga == undefined) ? data.harga_mobil : harga }",name='harga_mobil',placeholder='Edit Harga Mobil').form-control
+						.form-group.my-3
+							label
+								| Gambar 
+							input(type='file',value="#{ (gambar == undefined) ? data.gambar_mobil : gambar }",name='gambar_mobil',placeholder='Edit Gambar Mobil').form-control
+						.box-footer
+							input(type="hidden",name="_method", value="PUT")
+							button(type='submit').btn.btn-primary.me-3.my-2
+								i.fa.fa-pencil 
+								|  Edit
+							a(href='/menuutama').btn.btn-primary.pull-right.my-2
+								| Back

@@ -1,0 +1,21 @@
+.modal-header.headernocenter(style="background-image:url(/images/upload/#{data.gambar_mobil});height:200px;width:100.1%;background-repeat: no-repeat;background-size: cover;background-position:center;")
+  button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+.modal-body
+  p.h1.text-dark.fw-bold #{data.nama_mobil}
+  .d-flex.flex-row.bd-highlight.mb-3
+    .col-4
+      p.text-dark Nama 
+      p.text-dark Ready
+      p.text-dark Harga 
+    .col-1
+      p.text-dark :
+      p.text-dark :
+      p.text-dark :
+    .col-5
+      p.text-dark.fw-bold #{data.tipe_mobil}
+      p.text-dark.fw-bold #{data.jumlah_mobil}
+      p#harga.text-dark.fw-bold 
+  script.
+    data_harga = #{data.harga_mobil};
+    num = 'Rp. ' + data_harga.toFixed(0).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+    document.getElementById("harga").innerHTML = num;

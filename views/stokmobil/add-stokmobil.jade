@@ -1,0 +1,41 @@
+extends ../layout/base
+block content
+  .container.mb-5
+    p.text-center.h1.fw-bold TAMBAH DATA
+    form(role='form',method='post' action='/menuutama/add' enctype="multipart/form-data")
+      .row
+        .col-xs-6
+            .box-body
+                - if (messages.msg_error)
+                    .alert.alert-danger.alert-dismissible
+                        button.close(type='button', data-bs-dismiss='alert', aria-hidden='true')
+                            | ×
+                        h4
+                            i.icon.fa.fa-ban
+                            |  Peringatan
+                        | !{messages.msg_error}
+                .form-group.my-3
+                    label
+                        | Nama 
+                    input(type='text',name='nama_mobil',placeholder='', autofocus, required).form-control
+                .form-group.my-3
+                    label
+                        | Berat Bersih
+                    input(type='text',name='jumlah_mobil',placeholder='', required).form-control
+                .form-group.my-3
+                    label
+                        | Rasa
+                    input(type='text',name='tipe_mobil',placeholder='', required).form-control
+                .form-group.my-3
+                    label
+                        | Harga 
+                    input(type='text',name='harga_mobil',placeholder='', required).form-control
+                .form-group.my-3
+                    label
+                        | Gambar 
+                    input(type='file',name='gambar_mobil',placeholder='Masukan Gambar', required).form-control
+            .box-footer
+                button(type='submit').btn.btn-primary.me-3.my-2
+                    | Submit
+                a(href='/menuutama').btn.btn-primary.pull-right
+                    | Back

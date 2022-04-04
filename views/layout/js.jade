@@ -1,0 +1,38 @@
+script(type='text/javascript', src='/javascripts/jquery.js')
+script(type='text/javascript', src='/javascripts/bootstrap.js')
+script.
+  $(document).ready(function() {
+    $('.details').click(function() {
+      var id = $(this).data("id")
+      $.ajax({
+        url: "/menuutama/deskripsi/"+id,
+        data: {
+          id: id
+        },
+        success: function(data) {
+          $("#data-mobil").html(data);
+          $("#modalDetail").modal('show');
+        }
+      });
+    });
+    $('.detailscus').click(function() {
+      var id = $(this).data("id")
+      $.ajax({
+        url: "/customers/si/"+id,
+        data: {
+          id: id
+        },
+        success: function(data) {
+          $("#data-customer").html(data);
+          $("#modalDetailCus").modal('show');
+        }
+      });
+    });
+  });
+  tanggalan = new Date();
+  tahun = tanggalan.getFullYear();
+  bulan = ('0'+(tanggalan.getMonth() + 1)).slice(-2) ;
+  hari = tanggalan.getDate();
+  jam = ('0'+tanggalan.getHours()).slice(-2);
+  menit = ('0'+tanggalan.getMinutes()).slice(-2);
+  document.getElementById("tanggal_pembelian").value = hari + "/" + bulan + "/" + tahun + " Pada Jam " + jam + ":" + menit;

@@ -1,0 +1,53 @@
+extends ../layout/base 
+block content
+	.container.mb-5
+		p.text-center.h1.fw-bold EDIT LIST CUSTOMER
+		form(role='form',method='post' action='/customers/edit/#{(id==undefined) ? data.id : id}')
+			.row
+				.col-xs-6
+					.box-body
+						- if (messages.msg_error) 
+							.alert.alert-danger.alert-dismissible 
+								button.close(type='button', data-bs-dismiss='alert', aria-hidden='true')
+								h4
+									i.icon.fa.fa-ban
+									|  Peringatan 
+								| !{messages.msg_error}
+						- if (messages.msg_info) 
+							.alert.alert-success.alert-dismissible 
+								button.close(type='button', data-bs-dismiss='alert', aria-hidden='true')
+								h4
+									i.icon.fa.fa-ban
+									|  Berhasil 
+								| !{messages.msg_info}
+						.form-group.my-3
+							label
+								| Nama
+							input(type='text',value="#{data.name}",name='name',placeholder='Enter Name', autofocus).form-control
+						.form-group.my-3
+							label
+								| Alamat
+							input(type='text',value="#{data.address}",name='address',placeholder='Enter address').form-control
+						.form-group.my-3
+							label
+								| Email
+							input(type='email',value="#{data.email}",name='email',placeholder='Enter Email').form-control
+						.form-group.my-3
+							label
+								| Nomor HP
+							input(type='text',value="#{data.phone}",name='phone',placeholder='Enter Phone').form-control
+						.form-group.my-3
+							label
+								| Pilihan  yang dibeli
+							input(type='text',value="#{data.pilihan_beli}",name='pilihan_beli',placeholder='Enter Phone').form-control
+						.form-group.my-3
+							label
+								| Tanggal Pembelian
+							input(type='text',value="#{data.tanggal_pembelian}",name='tanggal_pembelian',placeholder='Enter Phone').form-control
+					.box-footer
+						input(type="hidden",name="_method", value="PUT")
+						button(type='submit').btn.btn-primary.me-3.my-2
+							i.fa.fa-pencil 
+							|  Edit
+						a(href='/customers').btn.btn-primary.pull-right
+							| Back

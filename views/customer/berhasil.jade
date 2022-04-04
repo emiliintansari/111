@@ -1,0 +1,15 @@
+link(href='https://fonts.googleapis.com/css2?family=Manrope:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap' rel='stylesheet')
+link(rel="stylesheet", href="/stylesheets/bootstrap.css")
+style.
+  * {
+    font-family: 'Manrope', sans-serif;
+  }
+body
+.d-flex.align-items-center(style='height:100vh;')
+  .container
+    if (messages.msg_info) 
+      h1.text-center.fw-bold #{messages.msg_info}
+    else
+      h1.text-center.fw-bold Tidak ada pesanan yang dikirim
+    .d-flex.align-items-center.justify-content-center
+      a.btn.btn-success.mt-4(href='/') Kembali ke Beranda

@@ -1,0 +1,19 @@
+.modal-header
+  p.h1.text-dark.fw-bold #{data.name}
+  button.btn-close(type='button' data-bs-dismiss='modal' aria-label='Close')
+.modal-body.d-flex.flex-row.bd-highlight.mb-3
+  .col-4
+    p.text-dark Alamat Email
+    p.text-dark Nomor HP
+    p.text-dark Pilihan 
+    p.text-dark Tanggal Pemesanan
+  .col-1
+    p.text-dark :
+    p.text-dark :
+    p.text-dark :
+    p.text-dark :
+  .col-6
+    p.text-dark #{data.email}
+    p.text-dark #{data.phone}
+    p.text-dark #{data.pilihan_beli}
+    p.text-dark.fw-bold #{data.tanggal_pembelian}

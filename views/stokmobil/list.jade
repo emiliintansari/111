@@ -1,0 +1,52 @@
+extends ../layout/base 
+block content 
+	.container.py-5#mobil
+		p.text-center.h1.fw-bold 
+		.box-body
+			- if(messages.msg_info)
+				.alert.alert-success.alert-dismissible.fade.show(role='alert')
+					h4
+						i.icon.fa.fa-check
+						|  Berhasil
+					| !{messages.msg_info}
+					button.btn-close(type='button' data-bs-dismiss='alert' aria-label='Close')
+			- if(messages.msg_error)
+				.alert.alert-danger.alert-dismissible.fade.show(role='alert')
+					button.btn-close(type='button' data-bs-dismiss='alert' aria-label='Close')
+					h4
+						i.icon.fa.fa-ban
+						|  Peringatan
+					| !{messages.msg_error}
+		if session_store.is_login
+			a(href='/menuutama/add').pull-left.btn.btn-primary.my-2
+				i.fa.fa-plus 
+				|  Tambah Menu
+		br
+		
+		
+		.row
+			if messages.msg_error
+				| !{messages.msg_error}
+			else
+				for row, index in data
+					.col-sm-3.col-6.my-3
+						.card.shadow.rounded-3(style='width:100%;')
+							if row.gambar_mobil
+								img( src="/images/upload/#{row.gambar_mobil}").card-img-top.rounded-top-3.shadow-sm
+							else
+								img( src="/images/carro.jpg").card-img-top.rounded-top-3.shadow-sm
+							.card-body
+								h5.card-title.fw-bold.judul_mobil #{row.nama_mobil}
+								p.card-text
+									| Rasa: #{row.tipe_mobil}
+								.row.justify-content-around.p-btn
+									a.btn.col-sm-4.mt-2.biru_ungu.text-white(href='/customers/beli/#{row.id}' style='border:0px!important;') Beli
+									a.btn.col-sm-6.mt-2.ungu_biru.text-white.details(style='border:0px!important;' data-id="#{row.id}" data-bs-toggle="modal") Deskripsi
+									if session_store.is_login
+										a(href='/menuutama/edit/#{row.id}').btn.btn-primary.col-sm-11.col-11.mt-2 Edit | 
+											i.fa-solid.fa-pen-to-square
+										form(method='post', action='/menuutama/delete/#{row.id}', id='formmobil')
+											input(type="hidden",name="_method", value="DELETE")
+											input(type="hidden",name="gambaran", value="#{row.gambar_mobil}")
+											button.btn.btn-danger.col-sm-12.mt-2.col-12(type='submit') Hapus | 
+												i.fa-solid.fa-trash-can

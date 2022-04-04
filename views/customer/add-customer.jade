@@ -1,0 +1,53 @@
+extends ../layout/base
+block content
+    .container.mb-5
+        p.text-center.h1.fw-bold TAMBAH DATA CUSTOMER
+        form(role='form',method='post' action='/customers/add')
+            .row
+                .col-xs-6
+                    .box-body
+                        - if (messages.msg_error)
+                            .alert.alert-danger.alert-dismissible
+                                button.close(type='button', data-bs-dismiss='alert', aria-hidden='true')
+                                h4
+                                    i.icon.fa.fa-ban
+                                    |  Peringatan
+                                | !{messages.msg_error}
+                        .form-group.my-3
+                            label
+                                | Nama
+                            input(type='text',name='name',placeholder='Masukan Nama', autofocus required).form-control
+                        .form-group.my-3
+                            label
+                                | Alamat
+                            input(type='text',name='address',placeholder='Masukan Alamat' required).form-control
+                        .form-group.my-3
+                            label
+                                | Email
+                            input(type='text',name='email',placeholder='Masukan Email' required).form-control
+                        .form-group.my-3
+                            label
+                                | Nomor HP
+                            input(type='text',name='phone',placeholder='Masukan Nomor HP' required).form-control
+                        //- TANGGAL PEMBELIAN
+                        .form-group.my-3
+                            input(type='hidden',name='tanggal_pembelian', id='tanggal_pembelian').form-control
+                        if idelva
+                            .form-group.my-3
+                                label
+                                    | Pilihan 
+                                input(type='text',name='pilihan_beli',value='#{data.nama_mobil}', required, readonly="readonly").form-control
+                        else
+                            .form-group.my-3
+                                label
+                                    | Pilihan 
+                                select(name="pilihan_beli" required).form-control
+                                    option(value="-" selected) --- Pilih Mobil ---
+                                    for row, index in data
+                                        option(value="#{row.nama_mobil}") #{row.nama_mobil}
+                    .box-footer
+                        button(type='submit').btn.btn-primary.me-3.my-2
+                            | Submit
+
+                        a(href='/customers').btn.btn-primary.pull-right
+                            | Back

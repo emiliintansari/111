@@ -1,0 +1,16 @@
+nav.navbar.navbar-expand-lg.navbar-light.shadow(style='background-color:#F4D03F;background-image: radial-gradient(circle, rgba(238,174,202,1) 0%, rgba(148,187,233,1) 100%);')
+  .container.py-3
+    a.navbar-brand.fw-bold.fs-4.text-white(href='#') 
+    button.navbar-toggler(type='button' data-bs-toggle='collapse' data-bs-target='#navbarNav' aria-controls='navbarNav' aria-expanded='false' aria-label='Toggle navigation')
+      span.navbar-toggler-icon
+    #navbarNav.collapse.navbar-collapse
+      ul.navbar-nav.ms-auto
+        li.nav-item
+          a.nav-link.active.text-white(aria-current='page' href='/menuutama') 
+        li.nav-item
+          a.nav-link.text-white(href='/menuutama#mobil') 
+        if session_store.is_login
+          li.nav-item
+            a.nav-link.text-white(href='/customers#custom') Customer
+          li.nav-item
+            a.nav-link.text-white.fw-bold(href='/logout') Logout
